@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" type="text/css" href="http://cdn3.devexpress.com/jslib/15.2.10/css/dx.common.css" />
+            <link rel="stylesheet" type="text/css" href="http://cdn3.devexpress.com/jslib/15.2.10/css/dx.spa.css"/>
+            <link rel="stylesheet" type="text/css" href="http://cdn3.devexpress.com/jslib/15.2.10/css/dx.light.css"/>
+            {% stylesheets 'bundles/app/css/*' filter='cssrewrite' %}
+                <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        {% block javascripts %}
+            <script src="//code.jquery.com/jquery-1.11.3.min.js" type="text/javascript"></script>
+            <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+            {% javascripts 'bundles/app/js/skel.min.js'
+            'bundles/app/js/util.js'
+            'bundles/app/js/main.js' %}
+                <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endblock %}
+    </head>
+    <body class="landing">
+        <header id="header" class="alt">
+            <h1><strong><a href="index.html">Summoner wars</a></strong> blog </h1>
+
+            {% if app.user %}
+            {# {% include '@App/_blocks/H/header_member_box.html.twig' %} #}
+            {% endif %}
+
+            <nav id="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="generic.html">Generic</a></li>
+                    <li><a href="elements.html">Elements</a></li>
+                    {% if app.user %}
+                        <li><a href="{{ path('fos_user_profile_show') }}">{{ app.user.username }}</a></li>
+                        <li><a href="{{ path('fos_user_security_logoutgit stas') }}">Sign-out</a></li>
+                    {% else %}
+                        <li><a href="{{ path('fos_user_security_login') }}">Sign-in</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </header>
+
+        <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+
+        <section id="banner">
+            <h2>TC The crown</h2>
+            <p>Venez partager votre savoir faire avec nous.</p>
+        </section>
+
+        {% block body %}{% endblock %}
+        <footer id="footer">
+            <div class="container">
+                <ul class="icons">
+                    <li><a href="#" class="icon fa-facebook"></a></li>
+                    <li><a href="#" class="icon fa-twitter"></a></li>
+                    <li><a href="#" class="icon fa-instagram"></a></li>
+                </ul>
+                <ul class="copyright">
+                    <li>&copy; Untitled</li>
+                    <li>Design: <a href="http://templated.co">TEMPLATED</a></li>
+                    <li>Images: <a href="http://unsplash.com">Unsplash</a></li>
+                </ul>
+            </div>
+        </footer>
+        {% block javascripts_footer %}{% endblock %}
+    </body>
+</html>
