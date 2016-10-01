@@ -32,14 +32,14 @@
 
             <nav id="nav">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="generic.html">Generic</a></li>
-                    <li><a href="elements.html">Elements</a></li>
+                    <li><a href="index.html">{% trans %}Home{% endtrans %}</a></li>
+                    <li><a href="generic.html">{% trans %}Articles{% endtrans %}</a></li>
+                    <li><a href="elements.html">{% trans %}Video{% endtrans %}</a></li>
                     {% if app.user %}
                         <li><a href="{{ path('fos_user_profile_show') }}">{{ app.user.username }}</a></li>
-                        <li><a href="{{ path('fos_user_security_logout') }}">Sign-out</a></li>
+                        <li><a href="{{ path('fos_user_security_logout') }}">{% trans %}Sign-out{% endtrans %}</a></li>
                     {% else %}
-                        <li><a href="{{ path('fos_user_security_login') }}">Sign-in</a></li>
+                        <li><a href="{{ path('fos_user_security_login') }}">{% trans %}Sign-in{% endtrans %}</a></li>
                     {% endif %}
                 </ul>
             </nav>
@@ -49,7 +49,7 @@
 
         <section id="banner">
             <h2>TC The crown</h2>
-            <p>Venez partager votre savoir faire avec nous.</p>
+            <p>{% trans %}Come and share your knowledge with us.{% endtrans %}</p>
         </section>
 
         <section id="main" class="wrapper">

@@ -5,7 +5,7 @@
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
     <section>
-        <h3>Sign in</h3>
+        <h3>{% trans %}Sign in{% endtrans %}</h3>
         <form action="{{ path("fos_user_security_check") }}" method="post">
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
             <div class="row uniform 50%">
@@ -15,10 +15,13 @@
                 <div class="3u 12u$(xsmall)">
                     <input type="password" id="password" name="_password" required="required" placeholder="Password" />
                 </div>
+                <div class="12u$">
+                    <a href="{{ path('fos_user_resetting_request') }}" data-toggle="tooltip" data-placement="bottom" title="{% trans %}Please click here to reset your password{% endtrans %}">Reset password</a>
+                </div>
+                <div class="12u$">
+                    <input type="submit" name="_submit" id="_submit" class="special" value="{% trans %}Sign in{% endtrans %}"/>
+                </div>
             </div>
-            <a href="{{ path('fos_user_resetting_request') }}" data-toggle="tooltip" data-placement="bottom" title="Please click here to reset your password">Reset password</a>
-            <div class="clear-fix"></div>
-            <input type="submit" name="_submit" id="_submit" class="special" value="Sign in"/>
         </form>
     </section>
 {% endblock %}
