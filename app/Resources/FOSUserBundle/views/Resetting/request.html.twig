@@ -1,0 +1,21 @@
+{% extends '::base.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block body %}
+    <section>
+        <h3>{% trans %}Ask change your password{% endtrans %}</h3>
+        <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+            <div class="row uniform 50%">
+                {% if invalid_username is defined %}
+                    <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</p>
+                {% endif %}
+
+                <div class="3u 12u$(xsmall)">
+                    <input type="text" id="username" name="username" required="required" placeholder="Username"/>
+                </div>
+                <div class="12u$">
+                    <input type="submit" value="{{ 'resetting.request.submit'|trans }}" class="special"/>
+                </div>
+            </div>
+        </form>
+    </section>
+{% endblock %}
