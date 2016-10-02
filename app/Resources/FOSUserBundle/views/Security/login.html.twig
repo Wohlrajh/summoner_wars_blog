@@ -16,7 +16,14 @@
                     <input type="password" id="password" name="_password" required="required" placeholder="Password" />
                 </div>
                 <div class="12u$">
-                    <a href="{{ path('fos_user_resetting_request') }}" data-toggle="tooltip" data-placement="bottom" title="{% trans %}Please click here to reset your password{% endtrans %}">Reset password</a>
+                    <a href="{{ path('fos_user_resetting_request') }}" data-toggle="tooltip" data-placement="bottom" title="{% trans %}Please click here to reset your password{% endtrans %}">
+                        {% trans %}Reset password {% endtrans %}
+                    </a>
+                </div>
+                <div class="12u$">
+                    <a href="{{ path('fos_user_registration_register') }}" data-toggle="tooltip" data-placement="bottom" title="{% trans %}Create your account{% endtrans %}">
+                        {% trans %}Create an account{% endtrans %}
+                    </a>
                 </div>
                 <div class="12u$">
                     <input type="submit" name="_submit" id="_submit" class="special" value="{% trans %}Sign in{% endtrans %}"/>
