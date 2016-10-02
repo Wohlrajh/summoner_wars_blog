@@ -47,7 +47,7 @@ class LoadMemberData extends AbstractFixture implements OrderedFixtureInterface,
             foreach ($row as $property => $value) {
                 $member->{"set" . ucfirst($property)}($value);
             }
-            $member->setPlainPassword('1Verseau');
+            $member->setPlainPassword('plop');
             $member->addRole('ROLE_MEMBER');
 
             $userManager->updateUser($member);

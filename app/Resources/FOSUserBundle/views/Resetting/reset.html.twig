@@ -1,0 +1,19 @@
+{% extends '::base.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block body %}
+    <section>
+        <h3>{% trans %}Reset your password{% endtrans %}</h3>
+        {{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset' } }) }}
+        <div class="row uniform 50%">
+            <div class="12u$">
+                {{ form_widget(form, {
+                    'attr': {'class': '3u 12u$'}
+                }) }}
+            </div>
+            <div class="12u$">
+                <input type="submit" value="{{ 'resetting.reset.submit'|trans }}" class="special"/>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </section>
+{% endblock %}
