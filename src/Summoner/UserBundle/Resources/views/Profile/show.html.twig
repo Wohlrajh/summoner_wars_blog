@@ -2,9 +2,15 @@
 
 {% trans_default_domain 'FOSUserBundle' %}
 {% block body %}
-    <h3>{% trans %}Profile{% endtrans %}</h3>
-    <div class="fos_user_user_show">
-        <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-        <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
-    </div>
+    <section>
+        <h3>{% trans %}Profile{% endtrans %}</h3>
+        <div class="row uniform 50%">
+            <div class="12u$">
+                <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+            </div>
+            <div class="12u$">
+                <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+            </div>
+        </div>
+    </section>
 {% endblock %}

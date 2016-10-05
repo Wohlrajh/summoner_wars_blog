@@ -36,7 +36,7 @@
                     <li><a href="generic.html">{% trans %}Articles{% endtrans %}</a></li>
                     <li><a href="elements.html">{% trans %}Video{% endtrans %}</a></li>
                     {% if app.user %}
-                        <li><a href="{{ path('fos_user_profile_show') }}">{{ app.user.username }}</a></li>
+                        <li><a href="{{ path('fos_user_profile_edit') }}">{{ app.user.username }}</a></li>
                         <li><a href="{{ path('fos_user_security_logout') }}">{% trans %}Sign-out{% endtrans %}</a></li>
                     {% else %}
                         <li><a href="{{ path('fos_user_security_login') }}">{% trans %}Sign-in{% endtrans %}</a></li>
