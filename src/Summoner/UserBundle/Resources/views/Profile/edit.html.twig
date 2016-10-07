@@ -6,10 +6,79 @@
         <h3>{% trans %}Profile{% endtrans %}</h3>
         {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
         <div class="row uniform 50%">
-            <div class="12u$">
-                {{ form_widget(form, {
-                    'attr': {'class': '6u 12u$'}
-                }) }}
+            <div class="1u">
+                {{ form_label(form.civility) }}
+            </div>
+            <div class="3u$">
+                {{ form_widget(form.civility) }}
+            </div>
+            <div class="error 3u$">
+                {{ form_errors(form.civility) }}
+            </div>
+            <div class="1u">
+                {{ form_label(form.lastName) }}
+            </div>
+            <div class="3u$">
+                {{ form_widget(form.lastName) }}
+            </div>
+            <div class="error 3u$">
+                {{ form_errors(form.lastName) }}
+            </div>
+            <div class="1u">
+                {{ form_label(form.firstName) }}
+            </div>
+            <div class="3u$">
+                {{ form_widget(form.firstName) }}
+            </div>
+            <div class="error 3u$">
+                {{ form_errors(form.firstName) }}
+            </div>
+            <div class="1u">
+                {{ form_label(form.dateOfBirth) }}
+            </div>
+            <div class="3u$">
+                {{ form_widget(form.dateOfBirth.day) }}
+                {{ form_widget(form.dateOfBirth.month) }}
+                {{ form_widget(form.dateOfBirth.year) }}
+            </div>
+            <div class="error 3u$">
+                {{ form_errors(form.dateOfBirth) }}
+            </div>
+            <div class="1u">
+                {{ form_label(form.address1) }}
+            </div>
+            <div class="3u$">
+                {{ form_widget(form.address1) }}
+            </div>
+            <div class="error 3u$">
+                {{ form_errors(form.address1) }}
+            </div>
+            <div class="1u">
+                {{ form_label(form.address2) }}
+            </div>
+            <div class="3u$">
+                {{ form_widget(form.address2) }}
+            </div>
+            <div class="error 3u$">
+                {{ form_errors(form.address2) }}
+            </div>
+            <div class="1u">
+                {{ form_label(form.postalCode) }}
+            </div>
+            <div class="3u$">
+                {{ form_widget(form.postalCode) }}
+            </div>
+            <div class="error 3u$">
+                {{ form_errors(form.postalCode) }}
+            </div>
+            <div class="1u">
+                {{ form_label(form.city) }}
+            </div>
+            <div class="3u$">
+                {{ form_widget(form.city) }}
+            </div>
+            <div class="error 3u$">
+                {{ form_errors(form.city) }}
             </div>
             <div class="12u$">
                 <input type="submit" value="{{ 'profile.edit.submit'|trans }}" class="special"/>
@@ -17,4 +86,14 @@
             {{ form_end(form) }}
         </div>
     </section>
+{% endblock %}
+{% block javascripts_footer %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#fos_user_profile_form_postalCode').on('blur', function() {
+            console.log('totot');
+        });
+    });
+</script>
+
 {% endblock %}

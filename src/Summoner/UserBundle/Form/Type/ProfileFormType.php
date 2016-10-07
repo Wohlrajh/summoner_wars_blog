@@ -2,11 +2,15 @@
 
 namespace Summoner\UserBundle\Form\Type;
 
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use FOS\UserBundle\Form\Type\ProfileFormType as ProfileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\LessThan;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ProfileFormType extends ProfileType
@@ -33,63 +37,58 @@ class ProfileFormType extends ProfileType
         $builder
             ->add(
                 'civility',
-                TextType::class,
+                CivilityType::class,
                 array(
-                    'label' => 'Civility',
-                    'required' => true,
-                    'constraints' => new NotBlank(array('message' => 'This field is required.'))
+                    'label' => 'Civility'
                 )
             )
             ->add(
                 'lastName',
-                TextType::class,
+                LastNameType::class,
                 array(
-                    'label' => 'Lastname',
-                    'required' => true,
-                    'constraints' => new NotBlank(array('message' => 'This field is required.'))
+                    'label' => 'Lastname'
                 )
             )
             ->add(
                 'firstName',
-                TextType::class,
+                FirstNameType::class,
                 array(
-                    'label' => 'Firstname',
-                    'required' => true,
-                    'constraints' => new NotBlank(array('message' => 'This field is required.'))
+                    'label' => 'Firstname'
                 )
             )
-            /*->add(
+            ->add(
                 'dateOfBirth',
-                TextType::class,
+                DateType::class,
                 array(
-                    'label' => 'date Of Birth',
-                    'required' => true,
-                    'constraints' => new NotBlank(array('message' => 'This field is required.'))
-                )
-            )*/
-            ->add(
-                'zipCode',
-                TextType::class,
-                array(
-                    'label' => 'Postal code',
-                    'required' => true,
-                    'constraints' => new NotBlank(array('message' => 'This field is required.'))
-                )
-            )
-            ->add(
-                'country',
-                TextType::class,
-                array(
-                    'label' => 'Country',
-                    'required' => true,
-                    'constraints' => new NotBlank(array('message' => 'This field is required.'))
+                    'label' => 'Date of birth',
+                    'years' => range(date('Y', strtotime('-12 years')), 1900),
+                    'input' => 'datetime',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'This field is required.')),
+                        new LessThan(
+                            array(
+                                'value' => '-12 years',
+                                'message' => 'You must be at least 12 years old to be a member of Works.'
+                            )
+                        ),
+                        new GreaterThanOrEqual(
+                            array(
+                                'value' => '01-01-1900',
+                                'message' => 'Invalid date.'
+                            )
+                        ),
+                    ),
+                    'html5' => false,
+                    /** @Ignore */
+                    'empty_value' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day'),
+                    'format' => 'MM dd yyyy',
                 )
             )
             ->add(
                 'address1',
                 TextType::class,
                 array(
-                    'label' => 'Adresse 1',
+                    'label' => 'Address 1',
                     'required' => true,
                     'constraints' => new NotBlank(array('message' => 'This field is required.'))
                 )
@@ -98,7 +97,30 @@ class ProfileFormType extends ProfileType
                 'address2',
                 TextType::class,
                 array(
-                    'label' => 'Adresse 2',
+                    'label' => 'Address 2',
+                )
+            )
+            ->add(
+                'postalCode',
+                TextType::class,
+                array(
+                    'label' => 'Postal code',
+                    'required' => true,
+                    'constraints' => array(
+                        new NotBlank(
+                            array(
+                                'message' => 'This field is required.'
+                            )
+                        ),
+                        new Length(
+                            array(
+                                'min' => 4,
+                                'max' => 5,
+                                'minMessage' => 'Your name must be at least {{ limit }} characters',
+                                'maxMessage' => 'Your name can not be longer than {{ limit }} characters.',
+                            )
+                        )
+                    ),
                 )
             )
             ->add(
@@ -107,6 +129,7 @@ class ProfileFormType extends ProfileType
                 array(
                     'label' => 'City',
                     'required' => true,
+                    'read_only' => true,
                     'constraints' => new NotBlank(array('message' => 'This field is required.'))
                 )
             );
@@ -116,6 +139,7 @@ class ProfileFormType extends ProfileType
     {
         $resolver->setDefaults(array(
             'data_class' => 'Summoner\UserBundle\Entity\User',
+            'attr' => array('novalidate' => 'novalidate'),
         ));
     }
 

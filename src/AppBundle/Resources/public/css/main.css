@@ -3266,3 +3266,8 @@
 				}
 
 		}
+/* Error */
+.error ul li{
+	color: red;
+	font-weight: bold;
+}

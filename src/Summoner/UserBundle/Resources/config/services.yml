@@ -4,7 +4,7 @@ parameters:
 #    parameter_name: value
 
 services:
-  summoner.user.form.profile:
+    summoner.user.form.profile:
         class: Summoner\UserBundle\Form\Type\ProfileFormType
         arguments: [%fos_user.model.user.class%]
         tags:
