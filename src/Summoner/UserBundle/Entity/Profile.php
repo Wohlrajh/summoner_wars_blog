@@ -23,22 +23,22 @@ class Profile
      */
     protected $user;
 
-    /** @ORM\Column(name="civilite", type="string", nullable = true) */
+    /** @ORM\Column(name="civility", type="string", nullable = true) */
     protected $civility;
 
-    /** @ORM\Column(name="nom", type="string", nullable = true) */
+    /** @ORM\Column(name="name", type="string", nullable = true) */
     protected $lastName;
 
-    /** @ORM\Column(name="prenom", type="string", nullable = true) */
+    /** @ORM\Column(name="firstname", type="string", nullable = true) */
     protected $firstName;
 
-    /** @ORM\Column(name="datenaiss", type="date", nullable = true) */
+    /** @ORM\Column(name="date_of_birth", type="date", nullable = true) */
     protected $dateOfBirth;
 
-    /** @ORM\Column(name="cp", type="string", nullable = true) */
-    protected $zipCode;
+    /** @ORM\Column(name="postal_code", type="string", nullable = true) */
+    protected $postalCode;
 
-    /** @ORM\Column(name="pays", type="string", nullable = true) */
+    /** @ORM\Column(name="country", type="string", nullable = true) */
     protected $country;
 
     /** @ORM\Column(name="addr1", type="string", nullable = true) */
@@ -47,10 +47,10 @@ class Profile
     /** @ORM\Column(name="addr2", type="string", nullable = true) */
     protected $address2;
 
-    /** @ORM\Column(name="datemodif", type="datetimetz", nullable = true) */
+    /** @ORM\Column(name="date_update", type="datetimetz", nullable = true) */
     protected $dateUpdate;
 
-    /** @ORM\Column(name="ville", type="string", nullable = true) */
+    /** @ORM\Column(name="city", type="string", nullable = true) */
     protected $city;
 
     public function getId()
@@ -87,9 +87,9 @@ class Profile
         return $this->dateOfBirth;
     }
 
-    public function getZipCode()
+    public function getPostalCode()
     {
-        return $this->zipCode;
+        return $this->postalCode;
     }
 
     public function getCountry()
@@ -156,9 +156,9 @@ class Profile
         return $this;
     }
 
-    public function setZipCode($zipCode)
+    public function setPostalCode($postalCode)
     {
-        $this->zipCode = $zipCode;
+        $this->postalCode = $postalCode;
         return $this;
     }
 

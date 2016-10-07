@@ -85,9 +85,9 @@ class User extends BaseUser
         return $this;
     }
 
-    public function setZipCode($zipCode)
+    public function setPostalCode($postalCode)
     {
-        $this->profile->setZipCode($zipCode);
+        $this->profile->setPostalCode($postalCode);
         return $this;
     }
 
@@ -141,9 +141,9 @@ class User extends BaseUser
         return $this->profile->getDateOfBirth();
     }
 
-    public function getZipCode()
+    public function getPostalCode()
     {
-        return $this->profile->getZipCode();
+        return $this->profile->getPostalCode();
     }
 
     public function getCountry()
