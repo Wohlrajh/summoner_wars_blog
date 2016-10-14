@@ -2,11 +2,14 @@
 
 namespace Summoner\UserBundle\Form\Type;
 
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use FOS\UserBundle\Form\Type\ProfileFormType as ProfileType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
 use Symfony\Component\Validator\Constraints\Length;
@@ -125,14 +128,51 @@ class ProfileFormType extends ProfileType
             )
             ->add(
                 'city',
-                TextType::class,
+                ChoiceType::class,
                 array(
                     'label' => 'City',
                     'required' => true,
-                    'read_only' => true,
-                    'constraints' => new NotBlank(array('message' => 'This field is required.'))
+                    'constraints' => new NotBlank(array('message' => 'This field is required.')),
                 )
             );
+
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+            $data = $event->getData();
+            $form = $event->getForm();
+            if (!is_null($data) && !is_null($data->getCity())) {
+                $form->remove('city');
+                $form->add(
+                    'city',
+                    ChoiceType::class,
+                    array(
+                        'label' => 'City',
+                        'required' => true,
+                        'constraints' => new NotBlank(array('message' => 'This field is required.')),
+                        'choices' => array($data->getCity() => $data->getCity())
+                    )
+                );
+            }
+        });
+
+        $builder->addEventListener(FormEvents::PRE_SUBMIT, function(FormEvent $event) {
+            $form = $event->getForm();
+            $data = $event->getData();
+            if (!is_null($data['city']) && !empty($data['city'])) {
+                $form->remove('city');
+                $form->add(
+                    'city',
+                    ChoiceType::class,
+                    array(
+                        'label' => 'City',
+                        'required' => true,
+                        'constraints' => new NotBlank(array('message' => 'This field is required.')),
+                        'choices' => array($data['city'] => $data['city'])
+                    )
+                );
+            }
+
+        });
+
     }
 
     public function configureOptions(OptionsResolver $resolver)

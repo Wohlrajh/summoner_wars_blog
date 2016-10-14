@@ -49,6 +49,7 @@ class LoadMemberData extends AbstractFixture implements OrderedFixtureInterface,
             }
             $member->setPlainPassword('plop');
             $member->addRole('ROLE_MEMBER');
+            $member->addRole('ROLE_ADMIN');
 
             $userManager->updateUser($member);
         }

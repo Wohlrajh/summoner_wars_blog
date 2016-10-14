@@ -6,10 +6,34 @@
         <h3>{% trans %}Profile{% endtrans %}</h3>
         <div class="row uniform 50%">
             <div class="12u$">
+                <p>{{ 'profile.show.civility'|trans }}: {{ user.civility }}</p>
+            </div>
+            <div class="12u$">
+                <p>{{ 'profile.show.lastName'|trans }}: {{ user.lastName }}</p>
+            </div>
+            <div class="12u$">
+                <p>{{ 'profile.show.firstName'|trans }}: {{ user.firstName }}</p>
+            </div>
+            <div class="12u$">
                 <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
             </div>
             <div class="12u$">
                 <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+            </div>
+            <div class="12u$">
+                <p>{{ 'profile.show.dateOfBirth'|trans }}: {{ user.dateOfBirth|date("Y-m-d") }}</p>
+            </div>
+            <div class="12u$">
+                <p>{{ 'profile.show.address1'|trans }}: {{ user.address1 }}</p>
+            </div>
+            <div class="12u$">
+                <p>{{ 'profile.show.address2'|trans }}: {{ user.address2 }}</p>
+            </div>
+            <div class="12u$">
+                <p>{{ 'profile.show.postalCode'|trans }}: {{ user.postalCode }}</p>
+            </div>
+            <div class="12u$">
+                <p>{{ 'profile.show.city'|trans }}: {{ user.city }}</p>
             </div>
         </div>
     </section>

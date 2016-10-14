@@ -1,0 +1,4 @@
+user_bundle_profile_postal_code_city:
+    path: /city
+    defaults: { _controller: "SummonerUserBundle:Profile:getCityByPostalCode" }
+    methods: "POST"

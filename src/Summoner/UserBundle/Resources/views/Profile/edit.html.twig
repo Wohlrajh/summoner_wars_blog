@@ -91,7 +91,24 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('#fos_user_profile_form_postalCode').on('blur', function() {
-            console.log('totot');
+            var data = {'postalCode': $('#fos_user_profile_form_postalCode').val()};
+            var url = "{{ path('user_bundle_profile_postal_code_city') }}";
+            $.ajax({
+                url : url,
+                type: 'POST',
+                data : data,
+                success: function(data) {
+                    $('#fos_user_profile_form_city').empty();
+                    $('#fos_user_profile_form_city').append(
+                        $("<option value=''></option>").text("----Select----")
+                    );
+                    for (var i = 0; i < data.length; i++) {
+                        $('#fos_user_profile_form_city').append(
+                            $("<option></option>").attr("value", data[i]).text(data[i])
+                        );
+                    }
+                }
+            });
         });
     });
 </script>
